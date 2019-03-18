@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CockpitComponent } from "./cockpit/cockpit.component";
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,5 +7,22 @@ import { CockpitComponent } from "./cockpit/cockpit.component";
 })
 export class AppComponent {
   serverElements = [{type:'server', name:'testserver', content:'just a test!'}];
+
+  onServerAdded(serverData:{serverName: string, serverContent:string }) {
+    this.serverElements.push({
+      type: 'server',
+      name: serverData.serverName,
+      content: serverData.serverContent
+    });
+  }
+
+  onBluprintAdded(blueprintData: { serverName: string, serverContent: string }) {
+    this.serverElements.push({
+      type: 'blueprint',
+      name: blueprintData.serverName,
+      content: blueprintData.serverContent
+    });
+  }
+
 
 }
