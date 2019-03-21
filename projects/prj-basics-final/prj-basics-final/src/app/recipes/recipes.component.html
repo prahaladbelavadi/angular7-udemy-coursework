@@ -3,6 +3,6 @@
     <app-recipe-list></app-recipe-list>
   </div>
   <div class="col-md-7">
-    <app-recipe-detail></app-recipe-detail>
+    <app-recipe-detail (selectedRecipe)="displayRecipe($event)"></app-recipe-detail>
   </div>
 </div>
