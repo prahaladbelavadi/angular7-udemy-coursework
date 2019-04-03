@@ -9,7 +9,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 export class UserComponent implements OnInit {
   id: number;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute , private UsersService) { }
 
   ngOnInit() {
     this.route.params
@@ -18,6 +18,10 @@ export class UserComponent implements OnInit {
           this.id = +params['id'];
         }
       );
+  }
+
+  onActivate(){
+    this.UsersService.userActivated.next(this.id);
   }
 
 }
