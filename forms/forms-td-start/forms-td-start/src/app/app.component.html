@@ -34,11 +34,14 @@
           <select 
           id="secret" 
           class="form-control"
-          ngModel
+          [ngModel]="defaultQuestion"
           name="secret">
             <option value="pet">Your first Pet?</option>
             <option value="teacher">Your first teacher?</option>
           </select>
+          <div class="form-group">
+            <textarea name="questionAnswer" rows="3" class="form-control" [(ngModel)]="answer"></textarea>
+          </div>
         </div>
         <button 
         class="btn btn-primary" 
