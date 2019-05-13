@@ -16,7 +16,7 @@ export class AppComponent {
   user = {
     username: "",
     email: "",
-    secretQuestion: "0",
+    secretQuestion: "",
     answer: "",
     gender: ""
   };
@@ -49,5 +49,8 @@ export class AppComponent {
     this.user.gender = this.signupForm.value.userData.gender;
 
     console.log(this.signupForm);
+  
+  this.signupForm.reset()
+
   }
 }
