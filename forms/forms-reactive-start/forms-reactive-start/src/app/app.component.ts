@@ -25,7 +25,7 @@ export class AppComponent {
         'email': new FormControl(null, [Validators.required, Validators.email])
       }),
       'gender': new FormControl('male'),
-      'hobbies': new FormArray([]])
+      'hobbies': new FormArray([])
     })
   }
 
