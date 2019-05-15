@@ -11,5 +11,13 @@ export class AppComponent {
 
   signupForm: FormGroup;
 
-  
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      'usernamee': new FormControl(null),
+      'email': new FormControl(null),
+      'gender': new FormControl('male')
+    })
+  }
+
+
 }
