@@ -14,7 +14,8 @@ export class AppComponent {
   forbiddenUsernames =[ 'Chris','Anna']
 
   onSubmit(){
-    console.log(this.signupForm)
+    console.log(this.signupForm);
+    this.signupForm.reset();
   }
 
 
@@ -36,6 +37,21 @@ export class AppComponent {
       this.signupForm.statusChanges.subscribe(status => {
         console.log(status);
       });
+
+      this.signupForm.setValue({
+        'userData':{
+          'username': 'Prahalad',
+          'email':'prahalad@belavadi.com'
+        },
+        'gender': 'male',
+        'hobbies':[]
+      })
+
+       this.signupForm.patchValue({
+         userData: {
+           username: "PR",
+         }
+       });
   }
 
   onAddHobby(){
