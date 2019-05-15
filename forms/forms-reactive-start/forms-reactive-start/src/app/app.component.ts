@@ -62,7 +62,7 @@ export class AppComponent {
   forbiddenNames(control:FormControl): {[s:string]: boolean}{
     if(this.forbiddenUsernames.indexOf(control.value) !== -1) {
     }
-    return null;
+    return;
   }
 
   forbiddenEmails(control: FormControl): Promise<any> | Observable<any>{

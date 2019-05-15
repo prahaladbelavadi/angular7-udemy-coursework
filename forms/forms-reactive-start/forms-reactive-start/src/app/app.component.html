@@ -9,11 +9,11 @@
             <input type="text" id="username" formControlName="username" class="form-control">
             <span class="help-block" *ngIf="signupForm.get('userData.username').valid && signupForm.get('userData.username').touched">
               
-                <span *ngIf="!signupForm.get('userData.username').errors['nameIsForbidden'] ">
+                <span *ngIf="!signupForm.get('userData.username').hasError ['nameIsForbidden']">
                   This Name is invalid!
                 </span>
 
-                <span *ngIf="signupForm.get('userData.username').errors['required']">
+                <span *ngIf="signupForm.get('userData.username').hasError['required']">
                   This field is required!
                 </span>
 
