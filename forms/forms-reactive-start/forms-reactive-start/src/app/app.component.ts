@@ -13,14 +13,7 @@ export class AppComponent {
   signupForm: FormGroup;
   forbiddenUsernames =[ 'Chris','Anna']
 
-  onSubmit(){
-    console.log(this.signupForm);
-    this.signupForm.reset();
-  }
-
-
   ngOnInit() {
-
     this.signupForm = new FormGroup({
       'userData': new FormGroup({
         'username': new FormControl(null, [Validators.required, this.forbiddenNames.bind(this)]),
@@ -54,6 +47,11 @@ export class AppComponent {
        });
   }
 
+  onSubmit() {
+    console.log(this.signupForm);
+    this.signupForm.reset();
+  }
+
   onAddHobby(){
     const control = new FormControl(null, Validators.required);
   (<FormArray>this.signupForm.get('hobbies')).push(control)
@@ -61,8 +59,9 @@ export class AppComponent {
 
   forbiddenNames(control:FormControl): {[s:string]: boolean}{
     if(this.forbiddenUsernames.indexOf(control.value) !== -1) {
+      return {'nameIsForbidden': true};
     }
-    return;
+    return null;
   }
 
   forbiddenEmails(control: FormControl): Promise<any> | Observable<any>{
