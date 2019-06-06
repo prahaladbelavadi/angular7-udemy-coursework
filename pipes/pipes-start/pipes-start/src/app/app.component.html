@@ -6,10 +6,12 @@
       <br>
       <button class="btn btn-primary" (click)="onAddServer()">Add Server</button>
 
+      <h2>{{appStatus | async}}</h2>
+
       <hr>
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let server of servers | filter:filteredStatus:'status'"
-        [ngClass]="getStatusClasses(server)">
+          [ngClass]="getStatusClasses(server)">
           <span class="badge">
             {{ server.status }}
           </span>
