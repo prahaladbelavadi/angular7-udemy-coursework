@@ -1,8 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+      <input type="text" [(ngModel)]="filteredStatus">
+
+      <hr>
       <ul class="list-group">
-        <li class="list-group-item" *ngFor="let server of servers" [ngClass]="getStatusClasses(server)">
+        <li class="list-group-item" *ngFor="let server of servers | filter:filteredStatus:'status'"
+        [ngClass]="getStatusClasses(server)">
           <span class="badge">
             {{ server.status }}
           </span>
