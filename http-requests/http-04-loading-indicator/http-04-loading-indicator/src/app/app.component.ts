@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Post } from './post.model';
 
+import { Post } from './post.model';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +11,9 @@ import { Post } from './post.model';
 })
 export class AppComponent implements OnInit {
   loadedPosts: Post[] = [];
+  isFetching = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.fetchPosts();
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
     // Send Http request
     this.http
       .post<{ name: string }>(
-        'https://ng-complete-guide-udemy.firebaseio.com/posts.json',
+        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
         postData
       )
       .subscribe(responseData => {
@@ -31,8 +32,7 @@ export class AppComponent implements OnInit {
   }
 
   onFetchPosts() {
-    // get Http request
-
+    // Send Http request
     this.fetchPosts();
   }
 
@@ -41,23 +41,25 @@ export class AppComponent implements OnInit {
   }
 
   private fetchPosts() {
+    this.isFetching = true;
     this.http
       .get<{ [key: string]: Post }>(
         'https://ng-complete-guide-udemy.firebaseio.com/posts.json'
       )
-      .pipe(map((responseData) => {
-        const postsArray: Post[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            postsArray.push({ ...responseData[key], id: key });
+      .pipe(
+        map(responseData => {
+          const postsArray: Post[] = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({ ...responseData[key], id: key });
+            }
           }
-        }
-        return postsArray;
-      }))
-      .subscribe(responseData => {
-
-
-        console.log(responseData);
+          return postsArray;
+        })
+      )
+      .subscribe(posts => {
+        this.isFetching = false;
+        this.loadedPosts = posts;
       });
   }
 }
