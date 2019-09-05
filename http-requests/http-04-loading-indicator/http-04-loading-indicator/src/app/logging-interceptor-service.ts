@@ -1,6 +1,6 @@
 
 import { HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http'
-import { tap } from 'rxjs'
+import { map, catchError, tap } from 'rxjs/operators';
 
 
 export class LoggingInterceptorService implements HttpInterceptor {

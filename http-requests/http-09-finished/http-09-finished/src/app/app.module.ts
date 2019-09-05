@@ -5,23 +5,23 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AuthInterceptorService } from './auth-interceptor.service';
-import { LoggingInterceptorService } from './logging-interceptor-service'
+import { LoggingInterceptorService } from './logging-interceptor.service';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule],
   providers: [
-    // the order of providing interceptors matter since they will be parsed by angular in the same way
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptorService,
+      useClass: LoggingInterceptorService,
       multi: true
     },
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: LoggingInterceptorService,
+      useClass: AuthInterceptorService,
       multi: true
     }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
