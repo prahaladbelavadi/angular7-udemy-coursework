@@ -66,15 +66,17 @@ export class PostsService {
       observe: 'events',
       responseType: 'json'
     })
-      .pipe(tap(event => {
-        console.log(event);
-        if (event.type = HttpEventType.Sent) {
-          // ..
-        }
-        if (event.type = HttpEventType.Response) {
-          console.log(event.body);
-        }
-      }));
+      .pipe(
+      //   tap(event => {
+      //   console.log(event);
+      //   if (event.type = HttpEventType.Sent) {
+      //     // ..
+      //   }
+      //   if (event.type = HttpEventType.Response) {
+      //     console.log(event.body);
+      //   }
+      // })
+      );
   }
 
 }
