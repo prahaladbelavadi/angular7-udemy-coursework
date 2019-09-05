@@ -13,14 +13,11 @@ export class PostsService {
 
     const postData: Post = { title, content };
 
-    this.http
+    return this.http
       .post<{ name: string }>(
         'https://ng-complete-guide-udemy.firebaseio.com/posts.json',
         postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+      );
 
   }
 
