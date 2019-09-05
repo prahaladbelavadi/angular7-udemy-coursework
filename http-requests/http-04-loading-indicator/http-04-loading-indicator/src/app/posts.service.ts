@@ -15,7 +15,7 @@ export class PostsService {
 
     this.http
       .post<{ name: string }>(
-        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        'https://ng-complete-guide-udemy.firebaseio.com/posts.json',
         postData
       )
       .subscribe(responseData => {
@@ -40,6 +40,10 @@ export class PostsService {
           return postsArray;
         })
       );
+  }
+
+  deletePosts() {
+    return this.http.delete('https://ng-complete-guide-udemy.firebaseio.com/posts.json');
   }
 
 }
