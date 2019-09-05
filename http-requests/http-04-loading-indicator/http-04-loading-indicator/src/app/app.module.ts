@@ -9,11 +9,19 @@ import { AUthInterceptorService } from './auth-interceptor.service';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule],
-  providers: [{
-    provide: HTTP_INTERCEPTORS,
-    useClass: AUthInterceptorService,
-    multi: true
-  }],
+  providers: [
+    // the order of providing interceptors matter since they will be parsed by angular in the same way
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AUthInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoggingInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
