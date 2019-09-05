@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit,OnDestroy {
+export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
   isFetching = false;
   error = null;
@@ -28,6 +28,7 @@ export class AppComponent implements OnInit,OnDestroy {
       this.isFetching = false;
       this.loadedPosts = posts;
     }, error => {
+      this.isFetching = false;
       this.error = error.message;
     });
   }
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit,OnDestroy {
       this.isFetching = false;
       this.loadedPosts = posts;
     }, error => {
+      this.error = false;
       this.error = error.message;
     });
   }
@@ -52,8 +54,13 @@ export class AppComponent implements OnInit,OnDestroy {
     });
   }
 
-  ngOnDestroy(){
-    this.errorSub.unsubscribe();
+  onHandleError() {
+    this.error = null;
+    this.isFetching = false;
   }
+
+  ngOnDestroy() {
+    this.errorSub.unsubscribe();
+  } v
 
 }
